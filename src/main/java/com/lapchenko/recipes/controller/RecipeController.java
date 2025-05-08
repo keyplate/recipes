@@ -2,7 +2,9 @@ package com.lapchenko.recipes.controller;
 
 import com.lapchenko.recipes.domain.MealType;
 import com.lapchenko.recipes.domain.Recipe;
+import com.lapchenko.recipes.model.RecipeCreateRequest;
 import com.lapchenko.recipes.service.RecipeService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +37,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes")
-    public ResponseEntity<Recipe> create(@RequestBody Recipe recipe) {
+    public ResponseEntity<Recipe> create(@Valid @RequestBody RecipeCreateRequest recipe) {
         var createdRecipe = service.create(recipe);
 
         var location = ServletUriComponentsBuilder

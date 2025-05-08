@@ -4,8 +4,10 @@ import com.lapchenko.recipes.domain.MealType;
 import com.lapchenko.recipes.domain.Recipe;
 import com.lapchenko.recipes.exception.InvalidRecipeException;
 import com.lapchenko.recipes.exception.NoSuchRecipeException;
+import com.lapchenko.recipes.model.RecipeCreateRequest;
 import com.lapchenko.recipes.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,8 +35,13 @@ public class RecipeService {
     }
 
     @Transactional
-    public Recipe create(Recipe recipe) {
+    public Recipe create(RecipeCreateRequest recipeCreateRequest) {
         try {
+            var recipe = new Recipe();
+            recipe.setName(recipeCreateRequest.getName());
+            recipe.setDescription(recipeCreateRequest.getDescription());
+            recipe.setIngredients(recipeCreateRequest.getIngredients());
+            recipe.setMealType(recipeCreateRequest.getMealType());
             return repository.save(recipe);
         } catch (Exception e) {
             throw new InvalidRecipeException();
