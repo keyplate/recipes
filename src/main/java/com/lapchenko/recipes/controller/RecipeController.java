@@ -55,7 +55,7 @@ public class RecipeController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping("/recipes/search")
     public ResponseEntity<List<Recipe>> search(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Long timeToCook,

@@ -62,4 +62,12 @@ public class Recipe {
     public void setMealType(MealType mealType) {
         this.mealType = mealType;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
